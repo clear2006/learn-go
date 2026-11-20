@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Selected.Name}} · TrackPulse</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">T</span><span>TRACK<span class="accent">PULSE</span></span></div>
+  <nav><a class="active" href="/live-timing/cap-karting">Chronométrage</a><a href="/live-timing/cap-karting">Circuits</a><a href="#about">À propos</a></nav>
+  <span class="demo-pill">DÉMO · DONNÉES FICTIVES</span>
+</header>
+<main class="container">
+  <div class="breadcrumbs"><a href="/live-timing/cap-karting">Chronométrage</a> <span>/</span> {{.Circuit}} <span>/</span> {{.Selected.Name}}</div>
+  <section class="hero compact">
+    <div><div class="eyebrow">RÉSULTATS DE COURSE · {{.Selected.Category}}</div><h1>{{.Selected.Name}}</h1><p class="subline">{{.Circuit}} <span>•</span> {{.Selected.Date}} <span>•</span> {{.Selected.Duration}}</p></div>
+    <div class="track-stat"><span>LONGUEUR DU CIRCUIT</span><strong>{{.Length}}</strong><small>3 secteurs</small></div>
+  </section>
+  <div class="backline"><a class="back-link" href="/live-timing/cap-karting">← Retour aux sessions</a><span class="demo-pill">RÉSULTATS SIMULÉS</span></div>
+  <section class="panel">
+    <div class="panel-heading"><div><div class="eyebrow">CLASSEMENT GÉNÉRAL</div><h2>Résultats des pilotes</h2></div><span class="count">{{len .Selected.Drivers}} participants</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>POS.</th><th>PILOTE</th><th>KART</th><th>TOURS</th><th>MEILLEUR TOUR</th><th>DERNIER TOUR</th><th>ÉCART</th></tr></thead>
+        <tbody>
+        {{range .Selected.Drivers}}
+          <tr data-driver="{{.Name}}">
+            <td><span class="position">{{.Position}}</span></td>
+            <td><strong>{{.Name}}</strong></td><td>#{{.Number}}</td><td>{{.Laps}}</td>
+            <td class="best-time">{{.BestLap}} s</td><td>{{.LastLap}} s</td><td>{{.Gap}}</td>
+          </tr>
+        {{end}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {{range .Selected.Drivers}}
+    {{if .LapTimes}}
+    <section class="panel lap-panel">
+      <div class="panel-heading"><div><div class="eyebrow">DÉTAIL DES CHRONOS</div><h2>{{.Name}} <span class="driver-kart">· Kart #{{.Number}}</span></h2></div><span class="count">{{len .LapTimes}} tours affichés / {{.Laps}} réalisés</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>TOUR</th><th>SECTEUR 1</th><th>SECTEUR 2</th><th>SECTEUR 3</th><th>TEMPS AU TOUR</th></tr></thead>
+          <tbody>
+          {{range .LapTimes}}
+            <tr data-lap="{{.Number}}"><td>{{.Number}}</td><td>{{.S1}} s</td><td>{{.S2}} s</td><td>{{.S3}} s</td><td class="best-time">{{.Total}} s</td></tr>
+          {{end}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {{end}}
+  {{end}}
+  <footer><span>TRACKPULSE · ENVIRONNEMENT DE TEST</span><span>Exemple pédagogique : chronos et identités entièrement fictifs</span></footer>
+</main>
+</body>
+</html>

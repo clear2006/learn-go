@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Circuit}} · Live Timing</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">T</span><span>TRACK<span class="accent">PULSE</span></span></div>
+  <nav><a class="active" href="/live-timing/cap-karting">Chronométrage</a><a href="#circuits">Circuits</a><a href="#about">À propos</a></nav>
+  <span class="demo-pill">DÉMO · DONNÉES FICTIVES</span>
+</header>
+
+<main class="container">
+  <div class="breadcrumbs">Accueil <span>/</span> France <span>/</span> {{.Circuit}}</div>
+  <section class="hero">
+    <div>
+      <div class="eyebrow"><span class="live-dot"></span> CENTRE DE CHRONOMÉTRAGE</div>
+      <h1>{{.Circuit}}</h1>
+      <p class="subline">{{.Location}} <span>•</span> {{.TrackType}}</p>
+    </div>
+    <div class="track-stat"><span>LONGUEUR DU CIRCUIT</span><strong>{{.Length}}</strong><small>Configuration fictive</small></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><span>SESSIONS</span><strong>{{len .Races}}</strong><small>dans cet exemple</small></div>
+    <div class="stat"><span>MEILLEUR TOUR</span><strong>48.214 <em>s</em></strong><small>Alex Martin · #12</small></div>
+    <div class="stat"><span>SECTEURS</span><strong>3</strong><small>S1 · S2 · S3</small></div>
+    <div class="stat"><span>DERNIÈRE MISE À JOUR</span><strong>{{.Updated}}</strong><small>heure locale du serveur</small></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-heading">
+      <div><div class="eyebrow">RÉSULTATS</div><h2>Sessions & courses</h2></div>
+      <span class="count">{{len .Races}} sessions</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>SESSION</th><th>CATÉGORIE</th><th>DATE</th><th>DURÉE</th><th>STATUT</th><th></th></tr></thead>
+        <tbody>
+        {{range .Races}}
+          <tr data-race-id="{{.ID}}">
+            <td><strong>{{.Name}}</strong><small class="muted">Réf. #{{.ID}}</small></td>
+            <td><span class="tag">{{.Category}}</span></td>
+            <td>{{.Date}}</td><td>{{.Duration}}</td>
+            <td><span class="status">{{.Status}}</span></td>
+            <td><a class="table-link" href="/race?id={{.ID}}">Voir les résultats <span>→</span></a></td>
+          </tr>
+        {{end}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <footer><span>TRACKPULSE · ENVIRONNEMENT DE TEST</span><span>Aucune donnée réelle · Pilotes et résultats inventés</span></footer>
+</main>
+</body>
+</html>
