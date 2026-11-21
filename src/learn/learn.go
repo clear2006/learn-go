@@ -1,13 +1,13 @@
 //une fonction avec une lettre minuscule en premiere lettre n'est pas accesible depuis un autre package
 //tuto : https://go.developpez.com/tutoriels/go-par-l-exemple/#LX
 
-package scraper
+package learn
 
 import "fmt"
 
 type person struct {
-    name string
-    age  int
+	name string
+	age  int
 }
 
 func Testfactoriel(a, b int) (int, int) {

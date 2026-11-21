@@ -1,3 +1,3 @@
-module testScrapper
+module LearnGo
 
 go 1.27.4
