@@ -5,11 +5,6 @@ package learn
 
 import "fmt"
 
-type Person struct {
-	Name string
-	Age  int
-}
-
 func Testfactoriel(a, b int) (int, int) {
 	fmt.Printf(" on veut faire factoriel de %d et factoriel de : %d \n", a, b)
 	var res1, res2 int = 1, 1
@@ -27,20 +22,4 @@ func FactRec(a int) int {
 		return 1
 	}
 	return a * FactRec(a-1)
-}
-
-func TestPointeurs(a *int, b *string) {
-	fmt.Printf(" voila le pointeur sur a :%p  et la valeur de a : %d \n", a, *a)
-	fmt.Printf(" voila le pointeur sur b :%p  et la valeur de b : %s \n", b, *b)
-	*a = 25
-}
-
-func AgeDiff(p1, p2 Person) int {
-	var agediff int = 0
-	if p1.Age > p2.Age {
-		agediff = p1.Age - p2.Age
-	} else {
-		agediff = p2.Age - p1.Age
-	}
-	return agediff
 }
