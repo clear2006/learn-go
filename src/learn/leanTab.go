@@ -1,9 +1,11 @@
 package learn
 
-func CreatTabPers(p1, p2, p3 Person) []Person {
-	return []Person{p1, p2, p3}
+import . "LearnGo/src/models"
+
+func CreatTabPers(p1, p2, p3 Personne) []Personne {
+	return []Personne{p1, p2, p3}
 }
 
-func ChangePers(tab *[]Person, pers Person, ind int) {
+func ChangePers(tab *[]Personne, pers Personne, ind int) {
 	(*tab)[ind] = pers
 }
