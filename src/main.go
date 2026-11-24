@@ -10,6 +10,8 @@ func main() {
 	// =========================================================================
 	//                             les Bases
 	// =========================================================================
+	fmt.Println("***************************** LES BASES ***************************** ")
+
 	var resultat1, resultat2 int = Testfactoriel(3, 4)
 	fmt.Println("factoriel de 3 : ", resultat1, "et factoriel de 4 :", resultat2)
 
@@ -19,6 +21,8 @@ func main() {
 	// =========================================================================
 	//                             les Pointeurs
 	// =========================================================================
+	fmt.Println("***************************** LES POINTEURS ***************************** ")
+
 	var testIntPointeur int = 45
 	var testStringPointeur = new(string)
 	*testStringPointeur = "test"
@@ -28,6 +32,8 @@ func main() {
 	// =========================================================================
 	//                             les Struct
 	// =========================================================================
+	fmt.Println("***************************** LES STRUCT ***************************** ")
+
 	var p1 Personne = Personne{Name: "ana", Age: 37}
 	var p2 Personne = Personne{Name: "peter", Age: 22}
 	var agediff int = AgeDiff(p1, p2)
@@ -36,13 +42,29 @@ func main() {
 	// =========================================================================
 	//                             les Tableaux
 	// =========================================================================
+	fmt.Println("***************************** LES TABLEAUX ***************************** ")
+
 	var p3 Personne = Personne{Name: "lola", Age: 18}
 	var tabPers = CreatTabPers(p1, p2, p3)
 	fmt.Println("Tableau lors de la creation : ", tabPers)
 
 	var p4 Personne = Personne{Name: "max", Age: 76}
 	ChangePers(&tabPers, p4, 0)
-	fmt.Println("Tableau suuite au changement de ana en max : ", tabPers)
+	fmt.Println("Tableau suite au changement de ana en max : ", tabPers)
 	// pour init un tab avec que des 0 :  var tab [5]in  ou   tab := [5]int{}
 
+	// =========================================================================
+	//                             les Slices
+	// =========================================================================
+	fmt.Println("***************************** LES SLICES ***************************** ")
+
+	slicePoint := tabPers[:] //Slice qui pointe vers le tabPers donc si on modif tabPers sa modif le slice
+	fmt.Println("Le slice qui pointe sur le tableau : ", slicePoint)
+	ChangePers(&tabPers, p1, 2)
+	fmt.Println("Le slice qui pointe sur le tableau apres changement du tableau : ", slicePoint)
+
+	sliceNew := ChangeTabToSlice(tabPers)
+	fmt.Println("Le slice copie du tableau : ", sliceNew)
+
+	AfficherNoms(tabPers)
 }

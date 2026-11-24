@@ -23,3 +23,29 @@ func FactRec(a int) int {
 	}
 	return a * FactRec(a-1)
 }
+
+//types de for
+/*
+classique
+for i := 0; i < 5; i++ {
+	fmt.Println(i)
+}
+
+conditionelle sert de while
+n := 1
+for n < 5 {
+	n *= 2
+}
+
+for range
+permetent de parcourir un tableau, slice, map, string
+for index, valeur := range fruits {
+	fmt.Println(index, valeur)
+}
+
+// Utilisez _ pour ignorer l'index ou la valeur
+for _, valeur := range fruits {
+	fmt.Println(valeur)
+}
+
+*/
