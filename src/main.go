@@ -66,5 +66,8 @@ func main() {
 	sliceNew := ChangeTabToSlice(tabPers)
 	fmt.Println("Le slice copie du tableau : ", sliceNew)
 
-	AfficherNoms(tabPers)
+	AfficherNoms(sliceNew)
+
+	AddToSlice(tabPers, sliceNew)
+	AfficherNoms(sliceNew)
 }
